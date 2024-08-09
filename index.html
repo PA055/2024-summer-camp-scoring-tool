@@ -46,10 +46,14 @@
                     </select>
                     Cubes in
                     <select name="zone" id="zone">
-                        <option value="blue-normal">the Blue Side</option>
-                        <option value="blue-zone">the Blue Doubling Zone</option>
-                        <option value="red-normal">the Red Side</option>
-                        <option value="red-zone">the Red Doubling Zone</option>
+                        <optgroup label="Blue">
+                            <option value="blue-normal">the Blue Side</option>
+                            <option value="blue-zone">the Blue Doubling Zone</option>
+                        </optgroup>
+                        <optgroup label="Red">
+                            <option value="red-normal">the Red Side</option>
+                            <option value="red-zone">the Red Doubling Zone</option>
+                        </optgroup>
                     </select>
                     <br>
                     <input type="submit" value="Add" id="add-quick-stack">
