@@ -26,6 +26,17 @@ function clearStack() {
 function updatePoints() {
     $("#red-points").text(`${redPoints} points`);
     $("#blue-points").text(`${bluePoints} points`);
+
+    if (redPoints > bluePoints) {
+        $("#blue").removeClass("won")
+        $("#red").addClass("won")
+    } else if (bluePoints > redPoints) {
+        $("#blue").addClass("won")
+        $("#red").removeClass("won")
+    } else {
+        $("#blue").removeClass("won")
+        $("#red").removeClass("won")
+    }
 }
 
 function addStack(stack) {
