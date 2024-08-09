@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cargo - Scoring</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="field-img">
+            <div id="left-outside">
+                <h1>Red: </h1>
+                <p>0 points</p>
+                <h1>Blue: </h1>
+                <p>0 points</p>
+            </div>
+            <div id="field">
+                <div id="left-field">
+                    <div id="top-left-zone" class="left-zone"></div>
+                    <div id="left-spacer" class="spacer"></div>
+                    <div id="bottom-left-zone" class="left-zone"></div>
+                </div>
+                <div id="right-field">
+                    <div id="top-right-zone" class="right-zone"></div>
+                    <div id="right-spacer" class="spacer"></div>
+                    <div id="bottom-right-zone" class="right-zone"></div>
+                </div>
+                <div id="stacks-container">
+                    <div class="cube-stack">
+                        <img class="purple-cube-img" src="images/purple_cube.png" height="40px">
+                        <img class="green-cube-img" src="images/green_cube.png" height="30px">
+                    </div>
+                </div>
+            </div>
+            <div id="right-outside">
+                <form id="quick-stack">
+                    <h1>Quick Stack</h1>
+                    A Stack of
+                    <input type="number" name="num-cubes" id="num-cubes" value="1">
+                    <select id="cube-color" name="cube-color">
+                        <option value="purple">Purple</option>
+                        <option value="green">Green</option>
+                    </select>
+                    Cubes in
+                    <select name="zone" id="zone">
+                        <option value="blue-normal">the Blue Zone</option>
+                        <option value="blue-zone">the Blue Doubling Zone</option>
+                        <option value="red-normal">the Red Zone</option>
+                        <option value="red-zone">the Red Doubling Zone</option>
+                    </select>
+                    <br>
+                    <button>Add</button>
+                </form>
+                <form id="auton-bonus">
+                    <h1>Auton Bonus</h1>
+                    The
+                    <select name="auton-bonus-team" id="auton-bonus-team">
+                        <option value="red">Red Team</option>
+                        <option value="blue">Blue Team</option>
+                    </select>
+                    got the Autonomous Bonus
+                </form>
+            </div>
+        </div>
+        <div id="stack-creator" class="floating hidden">
+            <div id="stack">
+                <div class="purple cube">
+                    <img src="images/purple_cube.png" height="40px">
+                    <p>Remove</p>
+                </div>
+                <div class="green cube">
+                    <img src="images/green_cube.png" height="30px">
+                    <p>Remove</p>
+                </div>
+            </div>
+            <div id="stack-buttons">
+                <div>Add Purple Cube</div>
+                <div>Add Green Cube</div>
+                <div>Cancel</div>
+                <div>Done</div>
+            </div>
+        </div>
+        <script src="score.js"></script>
+    </body>
+</html>
