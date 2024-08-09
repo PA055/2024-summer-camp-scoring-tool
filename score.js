@@ -157,3 +157,15 @@ $("#auton-bonus-team").change(function(){
     }
     updatePoints();
 })
+
+$("#reset").submit(function(event){
+    event.preventDefault();
+    if ($("#auton-bonus-team").val() == "blue") {
+        redPoints = 0;
+        bluePoints = 8;
+    } else if ($("#auton-bonus-team").val() == "red") {
+        redPoints = 8;
+        bluePoints = 0;
+    }
+    updatePoints();
+})
