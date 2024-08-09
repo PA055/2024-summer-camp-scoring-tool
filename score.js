@@ -7,13 +7,15 @@ var bluePoints = 0;
 var activeStack = []
 var stacks = []
 
-function updateCubeValue() {
+function updateStackValue() {
+    var stackVal = 0
     $("#stack .green.cube").each(function(index){
-        $(this).children(".cube-point-val").text(`${(2 + $(this).index()) * (lastClickedInZone ? 2 : 1)} points`);
+        stackVal += (2 + $(this).index()) * (lastClickedInZone ? 2 : 1)
     });
     $("#stack .purple.cube").each(function(index){
-        $(this).children(".cube-point-val").text(`${(1 + $(this).index()) * (lastClickedInZone ? 2 : 1)} points`);
+        stackVal += (1 + $(this).index()) * (lastClickedInZone ? 2 : 1)
     });
+    $("#stack-point-value").text(`${stackVal} points`)
 }
 
 function clearStack() {
@@ -41,19 +43,33 @@ function updatePoints() {
 
 function addStack(stack) {
     stacks.push(stack);
+    stackDiv = $("<div class=\"stack\"></div>")
+    stackDiv.append("<p>Remove</p>")
+    var points = 0
     for (var i = 0; i < stack.length; i++) {
-        if (lastClickedTeamRed) {
-            if (stack[i] == "purple")
-                redPoints += (1 + i) * (lastClickedInZone ? 2 : 1);
-            else
-                redPoints += (2 + i) * (lastClickedInZone ? 2 : 1);
+        if (stack[i] == "purple") {
+            points += (1 + i) * (lastClickedInZone ? 2 : 1);
+            stackDiv.append("<img src=\"images/purple_cube.png\" height=\"40px\">");
         } else {
-            if (stack[i] == "purple")
-                bluePoints += (1 + i) * (lastClickedInZone ? 2 : 1);
-            else
-                bluePoints += (2 + i) * (lastClickedInZone ? 2 : 1);
+            points += (2 + i) * (lastClickedInZone ? 2 : 1);
+            stackDiv.append("<img src=\"images/green_cube.png\" height=\"30px\">");
         }
     }
+    
+    if (lastClickedTeamRed) {
+        stackDiv.addClass("team-red")
+        redPoints += points
+    } else {
+        stackDiv.addClass("team-blue")
+        bluePoints += points
+    }
+
+    if (lastClickedInZone)
+        stackDiv.addClass("in-zone")
+    
+    stackDiv.attr("id", `stack-${stacks.length - 1}-${points}`)
+
+    $("#all-stacks h1").after(stackDiv)
     updatePoints();
 }
 
@@ -106,17 +122,25 @@ $("#left-field").click(function(e) {
 
 $("#add-purple-cube-btn").click(function(){
     $("#stack").append(`<div class="purple cube"><img src="images/purple_cube.png" height="40px"><p class="cube-point-val">${(1 + $("#stack .cube").length) * (lastClickedInZone ? 2 : 1)} points</p><p>Remove</p></div>`);
-    activeStack.push("purple")
+    activeStack.push("purple");
+    updateStackValue();
 })
 
 $("#add-green-cube-btn").click(function(){
     $("#stack").append(`<div class="green cube"><img src="images/green_cube.png" height="30px"><p class="cube-point-val">${(2 + $("#stack .cube").length) * (lastClickedInZone ? 2 : 1)} points</p><p>Remove</p></div>`);
-    activeStack.push("green")
+    activeStack.push("green");
+    updateStackValue();
 })
 
 $("#stack").on("click", "div", function(){
     this.remove();
-    updateCubeValue()
+    $("#stack .green.cube").each(function(index){
+        $(this).children(".cube-point-val").text(`${(2 + $(this).index()) * (lastClickedInZone ? 2 : 1)} points`);
+    });
+    $("#stack .purple.cube").each(function(index){
+        $(this).children(".cube-point-val").text(`${(1 + $(this).index()) * (lastClickedInZone ? 2 : 1)} points`);
+    });
+    updateStackValue();
     
 })
 
@@ -132,6 +156,7 @@ $("#done-btn").click(function(){
 })
 
 $("#quick-stack").submit(function(event){
+    event.preventDefault();
     activeStack = [];
     for (var i = 0; i < parseInt($("#num-cubes").val()); i++)
         activeStack.push($("#cube-color").val());
@@ -150,11 +175,10 @@ $("#quick-stack").submit(function(event){
         lastClickedTeamRed = true;
     } else {
         alert("something went wrong");
+        return false;
     }
-
     
     addStack(activeStack);
-    event.preventDefault();
 })
 
 $("#auton-bonus-team").change(function(){
@@ -169,6 +193,17 @@ $("#auton-bonus-team").change(function(){
     updatePoints();
 })
 
+$("#all-stacks").on("click", ".stack", function(){
+    var score = $(this).attr("id").split('-')[2]
+    if ($(this).hasClass("team-blue")) {
+        bluePoints -= score
+    } else if ($(this).hasClass("team-red")) {
+        redPoints -= score
+    }
+    updatePoints();
+    this.remove();
+})
+
 $("#reset").submit(function(event){
     event.preventDefault();
     if ($("#auton-bonus-team").val() == "blue") {
@@ -179,4 +214,10 @@ $("#reset").submit(function(event){
         bluePoints = 0;
     }
     updatePoints();
+
+    stacks = [];
+    $("#all-stacks .stack").each(function(){
+        $(this).remove();
+    });
+
 })

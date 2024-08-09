@@ -22,6 +22,7 @@ body {
     align-content: flex-start;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: auto;
 }
 
 .won {
@@ -128,6 +129,8 @@ body {
 #right-outside {
     height: 100vh;
     width: calc(50vw - (100vh * .5 * 1.14110429));
+    overflow: auto;
+    text-align: center;
 }
 
 #right-outside form {
@@ -136,6 +139,40 @@ body {
 
 #num-cubes {
     width: 50px;
+}
+
+#all-stacks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.stack {
+    width: 90%;
+    text-align: center;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: nowrap;
+}
+
+.stack.team-red {
+    background-color: rgba(255, 0, 0, 0.372);
+}
+.stack.team-blue {
+    background-color: rgba(0, 0, 255, 0.372);
+}
+
+.stack p {
+    background-color: #cccccc;
+    display: none;
 }
 
 .hidden {

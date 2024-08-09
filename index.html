@@ -46,6 +46,7 @@
                     </select>
                     Cubes in
                     <select name="zone" id="zone">
+                        <option value="click">Click Zone (not functional)</option>
                         <optgroup label="Blue">
                             <option value="blue-normal">the Blue Side</option>
                             <option value="blue-zone">the Blue Doubling Zone</option>
@@ -71,6 +72,14 @@
                     <h1>Reset</h1>
                     <input type="submit" value="Reset Points" id="reset-points">
                 </form>
+                <div id="all-stacks">
+                    <h1>Stacks</h1>
+                    <!-- <div id="stack-0" class="stack team-red">
+                        <p>Remove</p>
+                        <img src="images/purple_cube.png" height="40px">
+                        <img src="images/green_cube.png" height="30px">
+                    </div> -->
+                </div>
             </div>
         </div>
         <div id="stack-creator" class="floating hidden">
@@ -79,6 +88,7 @@
                 <div class="green cube"><img src="images/green_cube.png" height="30px"><p>2 points</p><p>Remove</p></div> -->
             </div>
             <div id="stack-buttons">
+                <div id="stack-point-value">0 points</div>
                 <div id="add-purple-cube-btn">Add Purple Cube</div>
                 <div id="add-green-cube-btn">Add Green Cube</div>
                 <div id="cancel-btn">Cancel</div>
@@ -87,4 +97,4 @@
         </div>
         <script src="score.js"></script>
     </body>
-</html>
+    </html>
