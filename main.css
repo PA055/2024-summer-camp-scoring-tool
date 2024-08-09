@@ -148,6 +148,7 @@ body {
     border: 2px solid black;
     display: flex;
     left: calc(50vw - (100vh * .5 * 1.14110429));
+    user-select: none;
 }
 
 #stack {

@@ -9,9 +9,9 @@
         <div id="field-img">
             <div id="left-outside">
                 <h1>Red: </h1>
-                <p>0 points</p>
+                <p id="red-points">8 points</p>
                 <h1>Blue: </h1>
-                <p>0 points</p>
+                <p id="blue-points">0 points</p>
             </div>
             <div id="field">
                 <div id="left-field">
@@ -25,10 +25,10 @@
                     <div id="bottom-right-zone" class="right-zone"></div>
                 </div>
                 <div id="stacks-container">
-                    <div class="cube-stack">
-                        <img class="purple-cube-img" src="images/purple_cube.png" height="40px">
-                        <img class="green-cube-img" src="images/green_cube.png" height="30px">
-                    </div>
+                    <!-- <div class="cube-stack">
+                        <img class="purple-cube-img" src="images/purple_cube.png" height="30px">
+                        <img class="green-cube-img" src="images/green_cube.png" height="20px">
+                    </div> -->
                 </div>
             </div>
             <div id="right-outside">
@@ -42,13 +42,13 @@
                     </select>
                     Cubes in
                     <select name="zone" id="zone">
-                        <option value="blue-normal">the Blue Zone</option>
+                        <option value="blue-normal">the Blue Side</option>
                         <option value="blue-zone">the Blue Doubling Zone</option>
-                        <option value="red-normal">the Red Zone</option>
+                        <option value="red-normal">the Red Side</option>
                         <option value="red-zone">the Red Doubling Zone</option>
                     </select>
                     <br>
-                    <button>Add</button>
+                    <input type="submit" value="Add" id="add-quick-stack">
                 </form>
                 <form id="auton-bonus">
                     <h1>Auton Bonus</h1>
@@ -63,20 +63,14 @@
         </div>
         <div id="stack-creator" class="floating hidden">
             <div id="stack">
-                <div class="purple cube">
-                    <img src="images/purple_cube.png" height="40px">
-                    <p>Remove</p>
-                </div>
-                <div class="green cube">
-                    <img src="images/green_cube.png" height="30px">
-                    <p>Remove</p>
-                </div>
+                <!-- <div class="purple cube"><img src="images/purple_cube.png" height="40px"><p>1 points</p><p>Remove</p></div>
+                <div class="green cube"><img src="images/green_cube.png" height="30px"><p>2 points</p><p>Remove</p></div> -->
             </div>
             <div id="stack-buttons">
-                <div>Add Purple Cube</div>
-                <div>Add Green Cube</div>
-                <div>Cancel</div>
-                <div>Done</div>
+                <div id="add-purple-cube-btn">Add Purple Cube</div>
+                <div id="add-green-cube-btn">Add Green Cube</div>
+                <div id="cancel-btn">Cancel</div>
+                <div id="done-btn">Done</div>
             </div>
         </div>
         <script src="score.js"></script>
