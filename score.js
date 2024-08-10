@@ -221,3 +221,5 @@ $("#reset").submit(function(event){
     });
 
 })
+
+// this is the flag lol: pbcctf{ThI5_CH411an6e_!5_S0_bAD,_i_b37_YOu_ovER7hOU6HT_it_aNd_sPen7_1iKE_2_h0UR5_DOinG_TH!$}
